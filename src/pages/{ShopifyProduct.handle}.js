@@ -1,7 +1,9 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import {graphql} from 'gatsby'
-
-const ProductPage = ({data}) => {
+import StoreContext from '../context/store-context'
+import Layout from '../components/layout'
+const Product = ({data}) => {
+  const {addVariantToCart} = useContext(StoreContext)
   return (
     <div>
       <h2>{data.shopifyProduct.title}</h2>
@@ -13,13 +15,29 @@ const ProductPage = ({data}) => {
         />
       </div>
       <div
-        dangerouslySetInnerHTML={{__html: data.shopifyProduct.descriptionHtml}}
+        dangerouslySetInnerHTML={{
+          __html: data.shopifyProduct.descriptionHtml,
+        }}
       />
       <span>
         {data.shopifyProduct.priceRange.maxVariantPrice.currencyCode}{' '}
         {data.shopifyProduct.priceRange.maxVariantPrice.amount}
       </span>
+      <button
+        onClick={() => {
+          addVariantToCart(data.shopifyProduct.shopifyId, 1)
+        }}
+      >
+        Add to Cart
+      </button>
     </div>
+  )
+}
+const ProductPage = ({data}) => {
+  return (
+    <Layout>
+      <Product data={data} />
+    </Layout>
   )
 }
 export const query = graphql`

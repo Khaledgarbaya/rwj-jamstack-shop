@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import StoreContext, {defaultStoreContext} from '../context/store-context'
-
+import {Link} from 'gatsby'
 const Layout = ({children}) => {
   const [state, setState] = useState({
     store: {
@@ -84,6 +84,10 @@ const Layout = ({children}) => {
         },
       }}
     >
+      <nav>
+        <Link to="/"> Store</Link>{' '}
+        <Link to="/cart">Cart ({state.store.checkout.lineItems.length})</Link>
+      </nav>
       <main>{children}</main>
     </StoreContext.Provider>
   )

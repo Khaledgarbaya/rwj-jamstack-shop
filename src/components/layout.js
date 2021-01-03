@@ -107,11 +107,40 @@ const Layout = ({children}) => {
         },
       }}
     >
-      <nav>
-        <Link to="/"> Store</Link>{' '}
-        <Link to="/cart">Cart ({state.store.checkout.lineItems.length})</Link>
-      </nav>
-      <main>{children}</main>
+      <header className="px-6 py-2 bg-indigo-600">
+        <nav className="container mx-auto max-w-screen-xl text-gray-200 flex justify-between">
+          <div>
+            <Link to="/">
+              <h1 className="text-3xl">JAMStore</h1>
+            </Link>
+          </div>
+          <div>
+            <Link to="/cart" className="block relative">
+              {state.store.checkout.lineItems.length > 0 ? (
+                <span className="absolute -left-2 -top-2 rounded-full bg-red-400 block px-2 py-1 text-xs">
+                  {state.store.checkout.lineItems.length}
+                </span>
+              ) : null}
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                title="cart"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                ></path>
+              </svg>
+            </Link>
+          </div>
+        </nav>
+      </header>
+      <main className="bg-gray-200 min-h-screen">{children}</main>
     </StoreContext.Provider>
   )
 }

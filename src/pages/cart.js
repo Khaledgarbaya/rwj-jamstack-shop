@@ -28,16 +28,27 @@ const Cart = () => {
   const updateItem = (id, quantity) =>
     updateLineItem(client, checkout.id, id, quantity)
   return (
-    <ul>
-      {checkout.lineItems.map((item) => (
-        <CartItem
-          key={item.id}
-          item={item}
-          removeItem={removeItem}
-          updateItem={updateItem}
-        />
-      ))}
-    </ul>
+    <div>
+      <h3> Your Shoping Cart </h3>
+      <ul>
+        {checkout.lineItems.map((item) => (
+          <CartItem
+            key={item.id}
+            item={item}
+            removeItem={removeItem}
+            updateItem={updateItem}
+          />
+        ))}
+      </ul>
+      <span>Subtotal: {checkout.subtotalPrice}</span>
+      <button
+        onClick={() => {
+          window.location = checkout.webUrl
+        }}
+      >
+        Checkout
+      </button>
+    </div>
   )
 }
 

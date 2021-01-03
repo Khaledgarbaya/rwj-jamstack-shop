@@ -77,10 +77,32 @@ const Layout = ({children}) => {
             })
         },
         removeLineItem: (client, checkoutID, lineItemID) => {
-          console.log('removing from cart')
+          return client.checkout
+            .removeLineItems(checkoutID, [lineItemID])
+            .then((res) => {
+              setState((prevState) => ({
+                store: {
+                  ...prevState.store,
+                  checkout: res,
+                },
+              }))
+            })
         },
         updateLineItem: (client, checkoutID, lineItemID, quantity) => {
-          console.log('updating cart')
+          console.log('updating cart', quantity)
+          const lineItemsToUpdate = [
+            {id: lineItemID, quantity: parseInt(quantity, 10)},
+          ]
+          return client.checkout
+            .updateLineItems(checkoutID, lineItemsToUpdate)
+            .then((res) => {
+              setState((prevState) => ({
+                store: {
+                  ...prevState.store,
+                  checkout: res,
+                },
+              }))
+            })
         },
       }}
     >

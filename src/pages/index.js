@@ -4,7 +4,7 @@ import Layout from '../components/layout'
 const IndexPage = ({data}) => {
   return (
     <Layout>
-      <ul>
+      <ul className="bg-gray-300">
         {data.allShopifyProduct.nodes.map((product) => (
           <li key={product.shopifyId}>
             <Link to={product.handle}>{product.title}</Link>

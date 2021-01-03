@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import StoreContext, {defaultStoreContext} from '../context/store-context'
 import {Link} from 'gatsby'
+import '../styles/tailwind.css'
 const Layout = ({children}) => {
   const [state, setState] = useState({
     store: {

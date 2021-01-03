@@ -25,7 +25,7 @@ const Product = ({data}) => {
       </span>
       <button
         onClick={() => {
-          addVariantToCart(data.shopifyProduct.shopifyId, 1)
+          addVariantToCart(data.shopifyProduct.variants[0].shopifyId, 1)
         }}
       >
         Add to Cart
@@ -56,6 +56,9 @@ export const query = graphql`
           amount
           currencyCode
         }
+      }
+      variants {
+        shopifyId
       }
       images {
         originalSrc

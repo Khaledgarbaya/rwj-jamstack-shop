@@ -2,8 +2,8 @@ import React from 'react'
 import Client from 'shopify-buy'
 
 const client = Client.buildClient({
-  domain: 'jamstackstore.myshopify.com',
-  storefrontAccessToken: process.env.LEARNJAMSTACK_SHOPIFY_TOKEN,
+  domain: process.env.GATSBY_STORE_URL,
+  storefrontAccessToken: process.env.GATSBY_SHOPIFY_TOKEN,
 })
 
 export const defaultStoreContext = {
@@ -13,9 +13,6 @@ export const defaultStoreContext = {
   checkout: {lineItems: []},
   products: [],
   shop: {},
-  addVariantToCart: () => {},
-  removeLineItem: () => {},
-  updateLineItem: () => {},
 }
 
 const StoreContext = React.createContext(defaultStoreContext)
